@@ -51,7 +51,6 @@ class Board
 
   def [](pos)
     x,y = pos
-    debugger
     board[x][y]
   end
 
