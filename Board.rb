@@ -7,7 +7,7 @@ class Board
 
   def initialize
     @board = Array.new(8){Array.new(8)}
-    # # #
+    # #
     # self.populate
   end
 
@@ -24,22 +24,51 @@ class Board
     end
   end
 
+
+    def [](pos)
+      x,y = pos
+      board[x][y]
+    end
+
+    def []=(pos, val)
+      x,y = pos
+      @board[x][y] = val
+      val.position = [x, y]
+    end
+
   def populate
-    a = NullPiece.new
-    # @board[0].map! { |i| a}
+    a
+    @board[[0,0]] == Rook.new("r", "white", board)
+    @board[[0,7]] == Rook.new("r", "white", board)
+    @board[[0,1]] == Knight.new("k", "white", board)
+    @board[[0,6]] == Knight.new("k", "white", board)
+    @board[[0,2]] == Bishop.new("b", "white", board)
+    @board[[0,5]] == Bishop.new("b", "white", board)
+    @board[[0,3]] == Queen.new("q", "white", board)
+    @board[[0,4]] == King.new("K", "white", board)
+
+    @board[[7,0]] == Rook.new("r", "black", board)
+    @board[[7,7]] == Rook.new("r", "black", board)
+    @board[[7,1]] == Knight.new("k", "black", board)
+    @board[[7,6]] == Knight.new("k", "black", board)
+    @board[[7,2]] == Bishop.new("b", "black", board)
+    @board[[7,5]] == Bishop.new("b", "black", board)
+    @board[[7,3]] == Queen.new("q", "black", board)
+    @board[[7,4]] == King.new("K", "black", board)
+
     # @board[1].map! { |i| a}
     # @board[2].map! { |i| a}
     # @board[3].map! { |i| a}
     # @board[4].map! { |i| a}
     # @board[5].map! { |i| a}
-    # @board[6].map! { |i| a}
-    # @board[7].map! { |i| a}
-
-    @board.each do |row|
-      row.each_with_index do |elem, ind|
-        row[ind] = a
-      end
-    end
+    # @board[6].map! { |i| a }
+    # @board[7].map! { }
+    #
+    # @board.each do |row|
+    #   row.each_with_index do |elem, ind|
+    #     row[ind] = a
+    #   end
+    # end
 
 
   end
@@ -49,16 +78,6 @@ class Board
     !self[pos].nil?
   end
 
-  def [](pos)
-    x,y = pos
-    board[x][y]
-  end
-
-  def []=(pos, val)
-    x,y = pos
-    @board[x][y] = val
-    val.position = [x, y]
-  end
 
 #
 # a = Board.new
