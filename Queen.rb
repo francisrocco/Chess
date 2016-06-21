@@ -1,8 +1,8 @@
 require_relative "SlidingClass.rb"
 
-class Rook < SlidingClass
+class Queen < SlidingClass
 
-  DIRECTIONS = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+  DIRECTIONS = [[-1, 0], [1, 0], [0, -1], [0, 1], [1,1], [-1, -1], [-1, 1], [1, -1]]
 
   attr_accessor :value, :position, :board
 
