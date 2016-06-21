@@ -2,10 +2,11 @@ require 'singleton'
 
 
 class NullPiece
-
+  attr_accessor :value, :position, :board
   # include Singleton
   def initialize
     @value = "   "
+    @position = nil
   end
 
 
@@ -27,4 +28,9 @@ class NullPiece
   def empty?
 
   end
+
+  def valid_pos?
+    position.all? {|elem| elem.between?(0,7)}
+  end
+
 end

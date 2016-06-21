@@ -1,13 +1,14 @@
 require_relative "piece.rb"
 require_relative "NullPiece.rb"
+require "byebug"
 
 class Board
   attr_accessor :board
 
   def initialize
     @board = Array.new(8){Array.new(8)}
-
-    self.populate
+    # # #
+    # self.populate
   end
 
   def move(start_pos, end_pos)
@@ -25,14 +26,22 @@ class Board
 
   def populate
     a = NullPiece.new
-    @board[0].map! { |i| Piece.new(" o ")}
-    @board[1].map! { |i| Piece.new(" o ")}
-    @board[2].map! { |i| a}
-    @board[3].map! { |i| a}
-    @board[4].map! { |i| a}
-    @board[5].map! { |i| a}
-    @board[6].map! { |i| Piece.new(" o ")}
-    @board[7].map! { |i| Piece.new(" o ")}
+    # @board[0].map! { |i| a}
+    # @board[1].map! { |i| a}
+    # @board[2].map! { |i| a}
+    # @board[3].map! { |i| a}
+    # @board[4].map! { |i| a}
+    # @board[5].map! { |i| a}
+    # @board[6].map! { |i| a}
+    # @board[7].map! { |i| a}
+
+    @board.each do |row|
+      row.each_with_index do |elem, ind|
+        row[ind] = a
+      end
+    end
+
+
   end
 
   def has_piece?(pos)
@@ -42,18 +51,25 @@ class Board
 
   def [](pos)
     x,y = pos
+    debugger
     board[x][y]
   end
 
-  def []=(board, val)
-    x,y = board
+  def []=(pos, val)
+    x,y = pos
     @board[x][y] = val
+    val.position = [x, y]
   end
 
-
-a = Board.new
-
-puts a
+#
+# a = Board.new
+# a
+#
+# a[[1,2]]
+# #piece
+#
+# a[[1,2]] = Piece.new("b", "white", a)
+# #
 
 
 end
