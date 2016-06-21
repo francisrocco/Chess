@@ -1,5 +1,6 @@
 require "colorize"
 require_relative "Cursorable.rb"
+require 'byebug'
 
 class Display
   include Cursorable
@@ -12,15 +13,16 @@ class Display
   end
 
   def build_grid
-    @board.rows.map.with_index do |row, i|
+    @board.board.map.with_index do |row, i|
       build_row(row, i)
     end
   end
 
   def build_row(row, i)
-    row.map.with_index do |piece, j|
+    row.map.with_index do |tile, j|
       color_options = colors_for(i, j)
-      piece.to_s.colorize(color_options)
+      # tile.nil? ? display_value = "   " : display_value = tile.to_s
+      tile.to_s.colorize(color_options)
     end
   end
 
@@ -30,7 +32,7 @@ class Display
     elsif (i + j).odd?
       bg = :black
     else
-      bg = :grey
+      bg = :blue
     end
     { background: bg, color: :white }
   end
@@ -39,5 +41,6 @@ class Display
     system("clear")
     puts "Arrow keys, space or enter to confirm (first for piece to move, second for position to move to). "
     build_grid.each { |row| puts row.join }
+    nil
   end
 end

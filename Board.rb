@@ -1,5 +1,5 @@
-require_relative "Require_File.rb"
-require "byebug"
+require_relative "piece.rb"
+require_relative "NullPiece.rb"
 
 class Board
   attr_accessor :board
@@ -24,10 +24,15 @@ class Board
   end
 
   def populate
-    @board[0].map! { |i| Piece.new("o")}
-    @board[1].map! { |i| Piece.new("o")}
-    @board[6].map! { |i| Piece.new("o")}
-    @board[7].map! { |i| Piece.new("o")}
+    a = NullPiece.new
+    @board[0].map! { |i| Piece.new(" o ")}
+    @board[1].map! { |i| Piece.new(" o ")}
+    @board[2].map! { |i| a}
+    @board[3].map! { |i| a}
+    @board[4].map! { |i| a}
+    @board[5].map! { |i| a}
+    @board[6].map! { |i| Piece.new(" o ")}
+    @board[7].map! { |i| Piece.new(" o ")}
   end
 
   def has_piece?(pos)
@@ -46,7 +51,9 @@ class Board
   end
 
 
+a = Board.new
 
+puts a
 
 
 end
